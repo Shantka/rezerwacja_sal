@@ -10,7 +10,7 @@ CREATE TABLE `sale` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nazwa` varchar(255),
   `liczbaOsob` int,
-  `opis` varchar(255)
+  `opis` varchar(4500)
 );
 
 CREATE TABLE `rezerwacje` (
@@ -44,7 +44,7 @@ CREATE TABLE `wyposazenie` (
 CREATE TABLE `notatki` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `notatka` varchar(255),
-  `rezerwacjaId` varchar(255)
+  `rezerwacjaId` int
 );
 
 ALTER TABLE `rezerwacje` ADD FOREIGN KEY (`organizatorId`) REFERENCES `uzytkownicy` (`id`);
