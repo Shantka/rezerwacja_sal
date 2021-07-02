@@ -8,10 +8,10 @@ VALUES
 
 INSERT INTO `uzytkownicy` (`login`, `imie`, `haslo`, `isAdmin`) 
 VALUES
-    ('m_kowalski@email.com', 'Marian Kowalski', '207023CCB44FEB4D7DADCA005CE29A64', 1),
-    ('j_wtorek@email.com', 'Jacek Wtorek', '207023CCB44FEB4D7DADCA005CE29A64', 0),
-    ('a_sroda@email.com', 'Adam Środa', '207023CCB44FEB4D7DADCA005CE29A64', 0),
-    ('k_czwartek@email.com', 'Kazimierz Czwartek', '207023CCB44FEB4D7DADCA005CE29A64', 0);
+    ('m_kowalski@email.com', 'Marian Kowalski', '207023ccb44feb4d7dadca005ce29a64', 1),
+    ('j_wtorek@email.com', 'Jacek Wtorek', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('a_sroda@email.com', 'Adam Środa', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('k_czwartek@email.com', 'Kazimierz Czwartek', '207023ccb44feb4d7dadca005ce29a64', 0);
 
 INSERT INTO `wyposazenie` (`opis`, `liczba`) 
 VALUES 
