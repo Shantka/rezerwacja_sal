@@ -14,12 +14,18 @@ use Handlers\AdminPanel;
 class Router
 {
     public function getHandler(): ?Handler
-    {
+    {     
+        $get_args = $_GET['args'];
+
+        if ($get_args === 'calendar') {
+            return new Calendar();
+        }
+
         switch ($_SERVER['REQUEST_URI'] ?? '/') {
             case '/contacts':
                 return new Contacts();
             case '/calendar':
-                return new Calendar();
+                return new Calendar();               
             case '/profile':
                 return new Profile();
             case '/login':

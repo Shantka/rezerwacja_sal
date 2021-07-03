@@ -17,6 +17,7 @@ require_once __DIR__ . '/src/handlers/Calendar.php';
 require_once __DIR__ . '/src/handlers/Rooms.php';
 require_once __DIR__ . '/src/handlers/AdminPanel.php';
 require_once __DIR__ . '/src/models/User.php';
+require_once __DIR__ . '/src/controls/CalendarControl.php';
 
 session_start();
 
