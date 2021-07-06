@@ -119,3 +119,7 @@ div#calendar ul.dates li{
 div.clear{
     clear:both;
 }
+
+div#calendar ul.dates li.mask{
+    background-color: #cdcdcd;
+}
