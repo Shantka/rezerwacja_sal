@@ -12,6 +12,7 @@ class CalendarControl
 
     /********************* PROPERTY ********************/
     private $dayLabels = array("Pon","Wt","Śr","Czw","Pt","So","Ni");
+    private $monthLabels = array("Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień");
 
     private $currentYear=0;
 
@@ -58,6 +59,7 @@ class CalendarControl
         $this->currentYear=$year;
 
         $this->currentMonth=$month;
+
 
         $this->daysInMonth=$this->_daysInMonth($month,$year);
 
@@ -140,12 +142,14 @@ class CalendarControl
 
         $preYear = $this->currentMonth==1?intval($this->currentYear)-1:$this->currentYear;
 
+
+
         return
             '<div class="header">'.
             '<a class="prev" href="'.'/calendar'.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Wstecz</a>'.
-            '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
-            '<a class="next" href="'.'/calendar'.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Dalej</a>'.
-            '</div>';
+            '<span class="title">'.date('Y',strtotime($this->currentYear)).' '.$this->monthLabels[$this->currentMonth - 1].'</span>'.
+                '<a class="next" href="'.'/calendar'.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Dalej</a>'.
+                '</div>';
     }
 
     /**
