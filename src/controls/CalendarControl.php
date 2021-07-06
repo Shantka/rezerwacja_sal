@@ -147,7 +147,7 @@ class CalendarControl
         return
             '<div class="header">'.
             '<a class="prev" href="'.'/calendar'.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Wstecz</a>'.
-            '<span class="title">'.date('Y',strtotime($this->currentYear)).' '.$this->monthLabels[$this->currentMonth - 1].'</span>'.
+            '<span class="title">'.$this->currentYear.' '.$this->monthLabels[$this->currentMonth - 1].'</span>'.
                 '<a class="next" href="'.'/calendar'.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Dalej</a>'.
                 '</div>';
     }
