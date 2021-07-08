@@ -38,11 +38,11 @@
 
         <div class="form-label-group mb-3">
             <label for="rooms">Sale</label><br />
-            <input type="radio" name="rooms" id="rooms" value="Sala 1">Sala 1<br />
-            <input type="radio" name="rooms" id="rooms" value="Sala 2">Sala 2<br />
-            <input type="radio" name="rooms" id="rooms" value="Sala 3">Sala 3<br />
-            <input type="radio" name="rooms" id="rooms" value="Sala 4">Sala 4<br />
-            <input type="radio" name="rooms" id="rooms" value="Sala 5">Sala 5<br />
+            <input type="radio" name="rooms" id="rooms" value="Sala 1"> Sala 1<br />
+            <input type="radio" name="rooms" id="rooms" value="Sala 2"> Sala 2<br />
+            <input type="radio" name="rooms" id="rooms" value="Sala 3"> Sala 3<br />
+            <input type="radio" name="rooms" id="rooms" value="Sala 4"> Sala 4<br />
+            <input type="radio" name="rooms" id="rooms" value="Sala 5"> Sala 5<br />
         </div>
 
         <button type="submit" class="btn btn-lg btn-primary btn-block">Zarezerwuj</button>
