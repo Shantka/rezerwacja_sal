@@ -10,6 +10,7 @@ use Handlers\Profile;
 use Handlers\Calendar;
 use Handlers\Rooms;
 use Handlers\AdminPanel;
+use Handlers\Reservations;
 
 class Router
 {
@@ -36,6 +37,8 @@ class Router
                 return new Rooms();
             case '/adminpanel':
                 return new AdminPanel();
+            case '/rezerwacje':
+                return new Reservations();
             case '/':
                 return new class extends Handler {
                     public function handle(): string

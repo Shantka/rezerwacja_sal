@@ -2,10 +2,12 @@
 
 namespace Handlers;
 
+use Components\Template;
+
 class Reservations extends Handler
 {
     public function handle(): string
     {
-        return 'reservations';
+        return (new Template('reservations'))->render();
     }
 }
