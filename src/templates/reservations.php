@@ -25,26 +25,24 @@
         </div>
 
         <div class="form-label-group mb-3">
-            <label for="text">Imię i nazwisko</label>
+            <label for="text">Imię i nazwisko</label><br />
             <select id="name" name="name" size="5">
-
-                    <option>Marian Kowalski</option>
-
+                <option>Marian Kowalski</option>
+                <option>Marian Kowalski</option>
+                <option>Marian Kowalski</option>
+                <option>Marian Kowalski</option>
+                <option>Marian Kowalski</option>
+                <option>Marian Kowalski</option>
             </select>
         </div>
 
         <div class="form-label-group mb-3">
-            <label for="rooms">Sale</label>
+            <label for="rooms">Sale</label><br />
             <input type="radio" name="rooms" id="rooms" value="Sala 1">Sala 1<br />
             <input type="radio" name="rooms" id="rooms" value="Sala 2">Sala 2<br />
             <input type="radio" name="rooms" id="rooms" value="Sala 3">Sala 3<br />
             <input type="radio" name="rooms" id="rooms" value="Sala 4">Sala 4<br />
             <input type="radio" name="rooms" id="rooms" value="Sala 5">Sala 5<br />
-        </div>
-
-        <div class="form-label-group mb-3">
-            <label for="text">Imię i nazwisko</label>
-            <input type="text" name="name" id="name" placeholder="Adam Nowak" required="required">
         </div>
 
         <button type="submit" class="btn btn-lg btn-primary btn-block">Zarezerwuj</button>
