@@ -10,7 +10,8 @@ CREATE TABLE `sale` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nazwa` varchar(255),
   `liczbaOsob` int,
-  `opis` varchar(4500)
+  `opis` varchar(4500),
+  `obrazUrl` varchar(255)
 );
 
 CREATE TABLE `rezerwacje` (
@@ -43,7 +44,7 @@ CREATE TABLE `wyposazenie` (
 
 CREATE TABLE `notatki` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `notatka` varchar(255),
+  `notatka` varchar(4500),
   `rezerwacjaId` int
 );
 

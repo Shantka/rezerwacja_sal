@@ -28,11 +28,22 @@ class Auth
         $_SESSION['userid'] = $id;
         $_SESSION['loginTime'] = time();
     }
+
     public static function logout()
     {
         if (session_status() === PHP_SESSION_ACTIVE) {
             session_regenerate_id(true);
             session_destroy();
         }
+    }
+
+    public static function getAuthenticatedUserId(): ?int
+    {
+        if (isset($_SESSION['userid'])) 
+        {
+            return $_SESSION['userid'];
+        }
+
+        return null;
     }
 }
