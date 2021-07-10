@@ -11,6 +11,7 @@ use Handlers\Calendar;
 use Handlers\Rooms;
 use Handlers\AdminPanel;
 use Handlers\Reservations;
+use Handlers\Test;
 
 class Router
 {
@@ -23,8 +24,8 @@ class Router
         }
 
         switch ($_SERVER['REQUEST_URI'] ?? '/') {
-            case '/contacts':
-                return new Contacts();
+            case '/test':
+                return new Test();
             case '/calendar':
                 return new Calendar();               
             case '/profile':
