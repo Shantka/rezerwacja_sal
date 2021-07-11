@@ -20,6 +20,8 @@ require_once __DIR__ . '/src/handlers/Reservations.php';
 require_once __DIR__ . '/src/handlers/Test.php';
 require_once __DIR__ . '/src/models/User.php';
 require_once __DIR__ . '/src/models/Room.php';
+require_once __DIR__ . '/src/models/Note.php';
+require_once __DIR__ . '/src/models/Reservation.php';
 require_once __DIR__ . '/src/controls/CalendarControl.php';
 
 session_start();
