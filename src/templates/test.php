@@ -1,7 +1,9 @@
 <?php
 
 ?>
-
+<style>
+        <?php include 'src/controls/css/rooms.css'; ?>
+    </style>
 <section class="my-5">
     <h3>Sale</h3>
 </section>
