@@ -12,6 +12,8 @@ use Handlers\Rooms;
 use Handlers\AdminPanel;
 use Handlers\Reservations;
 use Handlers\Test;
+use Handlers\TestReservation;
+use Handlers\Reservation;
 
 class Router
 {
@@ -22,10 +24,15 @@ class Router
         if ($get_args === 'calendar') {
             return new Calendar();
         }
+        else if ($get_args === 'reservation') {
+            return new Reservation((int)$_GET['id']);
+        }
 
         switch ($_SERVER['REQUEST_URI'] ?? '/') {
             case '/test':
                 return new Test();
+            case '/testreservation':
+                return new TestReservation();                          
             case '/calendar':
                 return new Calendar();               
             case '/profile':

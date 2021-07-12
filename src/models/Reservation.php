@@ -22,4 +22,29 @@ class Reservation
         $this->topic = (string)($input['temat'] ?? '');     
         $this->description = (string)($input['opis'] ?? '');   
     }
+
+    public function getOrganizerId(): int 
+    {
+        return $this->organizerId;
+    }
+    
+    public function getRoomId(): int
+    {
+        return $this->roomId;
+    }
+
+    public function getStart(): string
+    {
+        return $this->start;
+    }
+
+    public function getTopic(): string 
+    {
+        return $this->topic;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
 }

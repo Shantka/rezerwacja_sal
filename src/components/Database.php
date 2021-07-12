@@ -78,7 +78,17 @@ class Database
         return $rooms;
     }
 
-    public function addNewReservation(int $roomId, int $organizerId, string $date, string $topic, string $description)
+    public function getRoomById(int $id): Room
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM sale WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Room($data);
+    }
+
+    public function addNewReservation(int $roomId, int $organizerId, string $date, string $topic, string $description): int
     {
         $stmt = $this->pdo->prepare("INSERT INTO rezerwacje(organizatorId, salaId, start, koniec, temat, opis)
                                     VALUES(:organizatorId, :salaId, :start, :koniec, :temat, :opis)");
@@ -90,6 +100,8 @@ class Database
         $stmt->bindParam(":opis", $description, PDO::PARAM_STR);
 
         $stmt->execute();
+
+        return (int)$this->pdo->lastInsertId();
     }
 
     public function deleteReservation(int $reservationId)

@@ -16,7 +16,7 @@ abstract class Handler
     public function requestRedirect(string $uri)
     {
         $this->redirectUri = $uri;
-        header("Location: $uri", true);
+        header("Location: $uri", true);    
     }
 
     public function requestRefresh()
