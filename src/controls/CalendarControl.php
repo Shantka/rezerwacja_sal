@@ -126,7 +126,7 @@ class CalendarControl
 
 
         return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-            ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
+            ($cellContent==null?'mask':'').'"><a href="'.'/rezerwacje'.'">'.$cellContent.'</a></li>';
     }
 
     /**
