@@ -21,12 +21,14 @@ class Reservation extends Handler
         $organizer = Database::instance()->getUserById($reservation->getOrganizerId());
         $room = Database::instance()->getRoomById($reservation->getRoomId());
         $canEdit = Auth::getAuthenticatedUserId() === $reservation->getOrganizerId();
+        $invited = Database::instance()->getInvitedUsers($this->reservationId);
 
         return (new Template('reservation'))->render([
             'reservation' => $reservation,
             'organizer' => $organizer,
             'room' => $room,
-            'canedit' => $canEdit
+            'canedit' => $canEdit,            
+            'invited' => $invited
         ]);    
     }
 }

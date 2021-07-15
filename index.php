@@ -1,8 +1,5 @@
 <?php declare(strict_types=1);
 
-use Components\Router;
-use Components\Template;
-
 const WWW_PATH = __DIR__;
 
 require_once __DIR__ . '/src/components/Auth.php';
@@ -25,6 +22,10 @@ require_once __DIR__ . '/src/models/Room.php';
 require_once __DIR__ . '/src/models/Note.php';
 require_once __DIR__ . '/src/models/Reservation.php';
 require_once __DIR__ . '/src/controls/CalendarControl.php';
+// require_once __DIR__ . '/src/templates/inviteuser.php';
+
+use Components\Router;
+use Components\Template;
 
 session_start();
 

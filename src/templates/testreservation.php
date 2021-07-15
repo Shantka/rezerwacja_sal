@@ -1,11 +1,6 @@
 <section class="my-5">
     <h3>Rezerwacja</h3>
 </section>
-<script>
-function ondateselect(str) {
-     document.getElementById("txtHint").innerHTML = str;
-}
-</script>
 <div>
     <form action="/testreservation" method="POST">
     <div>
@@ -35,3 +30,8 @@ function ondateselect(str) {
     <button class="btn btn-lg btn-primary btn-block" type="submit">Rezerwuj</button>
     </form>
 </div>
+<script>
+function ondateselect(str) {
+     document.getElementById("txtHint").innerHTML = str;
+}
+</script>

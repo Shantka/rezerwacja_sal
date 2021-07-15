@@ -4,6 +4,7 @@ namespace Handlers;
 
 use Components\Auth;
 use Components\Template;
+use Components\Database;
 
 class Profile extends Handler
 {
@@ -12,7 +13,11 @@ class Profile extends Handler
         if (!Auth::userIsAuthenticated()) {
             return (new Login)->handle();
         }
-        return (new Template('profile'))->render();
+
+        return (new Template('profile'))->render([
+            'organizedmeetings' => Database::instance()->getUserReservations(Auth::getAuthenticatedUserId()),
+            'invitedmeetings' => Database::instance()->getInvitedUserReservations(Auth::getAuthenticatedUserId()),
+        ]);
     }
 
     public function getTitle(): string

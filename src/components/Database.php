@@ -189,6 +189,44 @@ class Database
         $stmt->execute();
     }
 
+    public function deleteInvitation(int $reservationId, int $userId) 
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM uczestnicy WHERE uzytkownikId = :uzytkownikId AND rezerwacjaId = :rezerwacjaId");
+        $stmt->bindParam(":uzytkownikId", $userId, PDO::PARAM_INT);
+        $stmt->bindParam(":rezerwacjaId", $reservationId, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }    
+
+    public function getInvitedUsers(int $reservationId): array
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM uzytkownicy WHERE id IN (SELECT uzytkownikId from uczestnicy WHERE rezerwacjaId = :rezerwacjaId)");
+        $stmt->bindParam(":rezerwacjaId", $reservationId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $reservations = array();
+        while ($row = $stmt->fetch()) {
+            array_push($reservations, new User($row));
+        }
+
+        return $reservations;
+    }
+
+    public function getAllNotInvitedUsers(int $reservationId): array
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM uzytkownicy WHERE id NOT IN (SELECT uzytkownikId FROM uczestnicy WHERE rezerwacjaId = :rezerwacjaId) AND id NOT IN (SELECT organizatorId FROM rezerwacje WHERE id = :rezerwacjaId2)");
+        $stmt->bindParam(":rezerwacjaId", $reservationId, PDO::PARAM_INT);
+        $stmt->bindParam(":rezerwacjaId2", $reservationId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $users = array();
+        while ($row = $stmt->fetch()) {
+            array_push($users, new User($row));
+        }
+
+        return $users;
+    }
+
     public function getInvitedUserReservations(int $userId): array 
     {
         $ids = $this->getUserReservationIds($userId);

@@ -23,6 +23,11 @@ class Reservation
         $this->description = (string)($input['opis'] ?? '');   
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getOrganizerId(): int 
     {
         return $this->organizerId;
