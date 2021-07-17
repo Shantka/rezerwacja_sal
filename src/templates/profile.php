@@ -80,7 +80,7 @@ $user = Auth::getUser();
         <div class="card-header" id="headingTwo">
         <h2 class="mb-0">
             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-            Spotkania na które jestś zaproszony
+            Spotkania na które jesteś zaproszony
             </button>
         </h2>
         </div>
@@ -88,7 +88,7 @@ $user = Auth::getUser();
         <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
             <?php if (count($invitedmeetings) === 0) { ?>
-                Nie jestś zaproszony na żadne spotkanie
+                Nie jesteś zaproszony na żadne spotkanie
                 <?php } else { ?>
                     <table class="table">
                     <tbody>
