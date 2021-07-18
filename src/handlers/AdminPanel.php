@@ -2,10 +2,17 @@
 
 namespace Handlers;
 
+use Components\Auth;
+use Components\Template;
+
 class AdminPanel extends Handler
 {
     public function handle(): string
     {
-        return 'admin panel';
+        if (!Auth::userIsAuthenticated()) {
+            return (new Login)->handle();
+        }
+
+        return (new Template('adminpanel'))->render();
     }
 }
