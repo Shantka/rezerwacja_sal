@@ -6,7 +6,7 @@
         <tbody>
             <tr>
                 <th style="width: 150px;">Data</th>
-                <td><?= date_format(date_create($reservation->getStart()), 'd-m-yy') ?></td>
+                <td><?= date_format(date_create($reservation->getStart()), 'd-m-Y') ?></td>
             </tr>
             <tr>
                 <th>Sala</th>

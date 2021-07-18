@@ -63,7 +63,7 @@ $user = Auth::getUser();
                     <tbody>
                         <?php foreach($organizedmeetings as $meeting) { ?>
                         <tr>
-                        <th style="width: 100px;"><?= date_format(date_create($meeting->getStart()), "m-d-yy") ?></th>
+                        <th style="width: 100px;"><?= date_format(date_create($meeting->getStart()), "m-d-Y") ?></th>
                         <td><?= $meeting->getTopic() ?></td>
                         <td><button type="button" class="btn btn-secondary" onclick="location.href='reservation?id=<?= $meeting->getId() ?>'">Szczegóły</button></td>
                         </tr>
@@ -94,7 +94,7 @@ $user = Auth::getUser();
                     <tbody>
                         <?php foreach($invitedmeetings as $meeting) { ?>
                         <tr>
-                        <th style="width: 100px;"><?= date_format(date_create($meeting->getStart()), "m-d-yy") ?></th>
+                        <th style="width: 100px;"><?= date_format(date_create($meeting->getStart()), "m-d-Y") ?></th>
                         <td><?= $meeting->getTopic() ?></td>
                         <td><button type="button" class="btn btn-success" disabled>Potwierdź</button>
                         <button type="button" class="btn btn-danger">Odrzuć</button></td>
