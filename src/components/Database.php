@@ -137,6 +137,22 @@ class Database
         return null;
     }
 
+    public function editReservationTopic(int $id, string $topic){
+        $stmt = $this->pdo->prepare("UPDATE rezerwacje SET temat = :topic WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":topic", $topic, PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
+
+    public function editReservationDescription(int $id, string $description){
+        $stmt = $this->pdo->prepare("UPDATE rezerwacje SET opis = :description WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":description", $description, PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
+
     public function addNewReservationNote(int $reservationId, string $note)
     {
         $stmt = $this->pdo->prepare("INSERT INTO notatki(rezerwacjaId, notatka) VALUES(:rezerwacjaId, :notatka)");

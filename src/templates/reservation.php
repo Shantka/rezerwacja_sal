@@ -20,11 +20,29 @@
             </tr>
             <tr>
                 <th>Temat</th>
-                <td><?= $reservation->getTopic() ?></td>
+                <td> 
+                    <?php if ($canedit) { ?>
+                    <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editTopicButton" 
+                        >Edytuj</button>
+                    <br>
+                    <?php } ?>
+                    <span id="topic">
+                        <?= $reservation->getTopic() ?>
+                    </span>
+                </td>
             </tr>
             <tr>
                 <th>Opis</th>
-                <td><?= $reservation->getDescription() ?></td>
+                <td>
+                    <?php if ($canedit) { ?>
+                    <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editDescriptionButton"
+                        >Edytuj</button>
+                    <br>
+                    <?php } ?>  
+                    <span id="description">
+                        <?= $reservation->getDescription() ?>
+                    </span>  
+                </td>
             </tr>
             <tr>
                 <th>Uczestnicy</th>
@@ -78,8 +96,65 @@ onclick="refreshavailableusers(<?= $reservation->getId() ?>)">
 </button>
 <?php } ?>
 
+<div class="modal fade" id="editTopicButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edytuj temat</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="false">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editedtopic">
+            <input type="text" class="form-control" value="<?= $reservation->getTopic() ?>" id="newtopic">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" 
+        onclick="onedittopic(newtopic.value, <?= $reservation->getId() ?>)">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editDescriptionButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edytuj opis</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="false">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editedtopic">
+            <textarea class="form-control" id="newdescription"><?= $reservation->getDescription() ?></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" 
+        onclick="oneditdescriptionc(newdescription.value, <?= $reservation->getId() ?>)">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
+function onedittopic(topic, reservationid) {    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "src/templates/editreservationtopic.php?topic=" + topic + "&reservation=" + reservationid, true);
+    xmlhttp.send();
+    document.getElementById("topic").innerHTML = topic;
+}
+
+function oneditdescriptionc(description, reservationid) {    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "src/templates/editreservationdescription.php?description=" + description + "&reservation=" + reservationid, true);
+    xmlhttp.send();
+    document.getElementById("description").innerHTML = description;
+}
+
 function onremoveinvitation(userid, reservationid) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {

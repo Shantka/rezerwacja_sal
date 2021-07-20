@@ -23,7 +23,6 @@ require_once __DIR__ . '/src/models/Room.php';
 require_once __DIR__ . '/src/models/Note.php';
 require_once __DIR__ . '/src/models/Reservation.php';
 require_once __DIR__ . '/src/controls/CalendarControl.php';
-// require_once __DIR__ . '/src/templates/inviteuser.php';
 
 use Components\Router;
 use Components\Template;

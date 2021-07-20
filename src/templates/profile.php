@@ -4,10 +4,11 @@ use Components\Auth;
 
 $user = Auth::getUser();
 ?>
-
+<div class="d-flex justify-content-center">
 <section class="my-5">
     <h3>Witaj, <?= $user->getUsername() ?>!</h3>
 </section>
+</div>
 <div class="accordion" id="accordion">
 
     <div class="card">
