@@ -1,6 +1,8 @@
+<div class="d-flex justify-content-center">
 <section class="my-5">
     <h3>Rezerwacja</h3>
 </section>
+</div>
 <div class="row">
     <table class="table">
         <tbody>
@@ -33,8 +35,10 @@
                     <?php foreach($invited as $user) { ?>
                         <tr>
                             <th><?= $user->getUsername() ?></th>
+                            <?php if ($canedit) { ?>
                             <td><button type="button" class="btn btn-dark btn-sm" 
                             onclick="onremoveinvitation(<?= $user->getId() ?>, <?= $reservation->getId() ?>)">Usuń</button></td>
+                            <?php } ?>
                         <tr>
                     <?php } ?>                            
                     </tbody>
@@ -67,10 +71,12 @@
   </div>
 </div>
 
+<?php if ($canedit) { ?>
 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalButton" 
 onclick="refreshavailableusers(<?= $reservation->getId() ?>)">
   Zaproś uczestników
 </button>
+<?php } ?>
 
 
 <script>

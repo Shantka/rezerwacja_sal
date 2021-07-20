@@ -1,37 +1,32 @@
+<div class="d-flex justify-content-center">
 <section class="my-5">
-    <h3>Rezerwacja</h3>
+    <h3>Nowa rezerwacja</h3>
 </section>
-<div>
+</div>
+<div class="d-flex justify-content-center">
     <form action="/testreservation" method="POST">
     <div>
-        <label for="date">Data</label>
-        <input type="date" name="date" id="date" onchange="ondateselect(this.value)">
+        Sala: <?= $room->getName() ?>
+        <input type="hidden" id="room" name="room" value="<?= $room->getId() ?>">
     </div>
-
+    <br>
     <div>
-        <label for="rooms">Sale</label><br />
-        <?php foreach($rooms as $room) { ?>
-            <input type="radio" name="room" id=<?= $room->getId() ?> onchange="testme(this.id)"
-                value=<?= $room->getId() ?>><?= $room->getName() ?><br/>
-        <?php } ?>
+        <label for="datec">Data</label><br> 
+        <input class="form-control" type="date" name="datec" value=<?= $date ?> disabled>
+        <input type="hidden" id="date" name="date" value=<?= $date ?>>
     </div>
-    
+    <br>
     <div>
-        <label for="topic">Temat</label><br />
-        <input type="text" name="topic" id="topic">
+        <label for="topic">Temat</label><br>
+        <input class="form-control" type="text" name="topic" id="topic">
     </div>
-
+    <br>
     <div>
-        <label for="Opis">Szczegóły</label><br/>
-        <input type="text" name="description" id="description"><br/>
+        <label for="Opis">Szczegóły</label><br>
+        <textarea class="form-control" name="description" id="description" cols="50"></textarea><br/>
     </div>
-    <br />
-    <p>Suggestions: <span id="txtHint"></span></p>
+    <br>
+    <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Rezerwuj</button>
     </form>
 </div>
-<script>
-function ondateselect(str) {
-     document.getElementById("txtHint").innerHTML = str;
-}
-</script>

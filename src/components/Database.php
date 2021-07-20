@@ -144,9 +144,6 @@ class Database
         $stmt->bindParam(":notatka", $note, PDO::PARAM_STR);
         
         $stmt->execute();
-        
-        // ID ostatnio dodanego wiersza
-        // $newId = $this->pdo->lastInsertId();
     }
 
     public function editReservationNote(int $noteId, string $note)
@@ -250,6 +247,47 @@ class Database
         
         while ($row = $stmt->fetch()) {
             array_push($ids, $row['rezerwacjaId']);
+        }
+
+        return $ids;
+    }
+
+    public function addRoom(string $name, string $description, int $personcount)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO sale(nazwa, opis, liczbaOsob) VALUES(:name, :description, :personcount)");
+        $stmt->bindParam(":name", $name, PDO::PARAM_STR);
+        $stmt->bindParam(":description", $description, PDO::PARAM_STR);
+        $stmt->bindParam(":personcount", $personcount, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
+    public function editRoom(int $id, string $name, string $description, int $personcount) 
+    {
+        $stmt = $this->pdo->prepare("UPDATE sale SET nazwa = :name, opis = :description, liczbaOsob = :personcount WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":name", $name, PDO::PARAM_STR);
+        $stmt->bindParam(":description", $description, PDO::PARAM_STR);
+        $stmt->bindParam(":personcount", $personcount, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
+    public function getOccupiedDatesForRoom(int $roomId, string $year, string $month): ?array
+    {
+        $firstDay = "$year-$month-01";
+        $lastDay = "$year-$month-".date('t',strtotime($firstDay));
+
+        $stmt = $this->pdo->prepare("SELECT id, start FROM rezerwacje WHERE salaId = :roomId and start >= :start and start <= :end");
+        $stmt->bindParam(':roomId', $roomId, PDO::PARAM_INT);
+        $stmt->bindParam(':start', $firstDay);
+        $stmt->bindParam(':end', $lastDay);
+
+        $stmt->execute();
+        $ids = array();
+        
+        while ($row = $stmt->fetch()) {
+            $ids[date("Y-m-d", strtotime($row['start']))] = $row['id'];    
         }
 
         return $ids;

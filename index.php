@@ -17,6 +17,7 @@ require_once __DIR__ . '/src/handlers/Reservations.php';
 require_once __DIR__ . '/src/handlers/Test.php';
 require_once __DIR__ . '/src/handlers/TestReservation.php';
 require_once __DIR__ . '/src/handlers/Reservation.php';
+require_once __DIR__ . '/src/handlers/AddRoom.php';
 require_once __DIR__ . '/src/models/User.php';
 require_once __DIR__ . '/src/models/Room.php';
 require_once __DIR__ . '/src/models/Note.php';

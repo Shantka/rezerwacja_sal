@@ -14,6 +14,7 @@ use Handlers\Reservations;
 use Handlers\Test;
 use Handlers\TestReservation;
 use Handlers\Reservation;
+use Handlers\AddRoom;
 
 class Router
 {
@@ -27,12 +28,31 @@ class Router
         else if ($get_args === 'reservation') {
             return new Reservation((int)$_GET['id']);
         }
+        else if ($get_args === 'room') {
+            $addRoom = new AddRoom();
+            if (isset($_GET['id'])) {
+                $addRoom->setId($_GET['id']);
+            }
+            return $addRoom;
+        }
+        else if ($get_args === 'testreservation') {
+            $reservation = new TestReservation();
+            if (isset($_GET['date'])) {
+                $reservation->setDate($_GET['date']);
+            }
+            if (isset($_GET['roomid'])) {
+                $reservation->setRoomId((int)$_GET['roomid']);
+            }
+            return $reservation;
+        }
 
         switch ($_SERVER['REQUEST_URI'] ?? '/') {
-            case '/test':
+            case '/rooms':
                 return new Test();
             case '/testreservation':
-                return new TestReservation();                          
+                return new TestReservation();   
+            case '/room':
+                return new AddRoom();                       
             case '/calendar':
                 return new Calendar();               
             case '/profile':
@@ -41,8 +61,8 @@ class Router
                 return new Login();
             case '/logout':                
                 return new Logout();
-            case '/rooms':
-                return new Rooms();
+            // case '/rooms':
+            //     return new Rooms();
             case '/adminpanel':
                 return new AdminPanel();
             case '/rezerwacje':

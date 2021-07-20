@@ -6,8 +6,11 @@ class CalendarControl
     /**
      * Constructor
      */
-    public function __construct(){
+    public function __construct(array $occupiedDates, int $roomid){
         $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
+
+        $this->occupiedDates = $occupiedDates;
+        $this->roomid = $roomid;
     }
 
     /********************* PROPERTY ********************/
@@ -25,6 +28,10 @@ class CalendarControl
     private $daysInMonth=0;
 
     private $naviHref= null;
+
+    private $occupiedDates;
+
+    private $roomid;
 
     /********************* PUBLIC **********************/
 
@@ -124,9 +131,23 @@ class CalendarControl
             $cellContent=null;
         }
 
+        $class = '';
+        $link = "testreservation?date=$this->currentDate&roomid=$this->roomid";
+        if ($cellContent == null) {
+            $class = 'mask';
+        } else if (array_key_exists($this->currentDate, $this->occupiedDates)) {
+            // $class = 'occupied';
+            $resid = $this->occupiedDates[$this->currentDate];
+            $link = "reservation?id=$resid";
+        } else {
+            $class = 'free';
+        }
+        
 
-        return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-            ($cellContent==null?'mask':'').'"><a href="'.'/rezerwacje'.'">'.$cellContent.'</a></li>';
+
+        return '<li id="li-'.$this->currentDate.'" class="'.($class).'">
+            <a href="'.$link.'">'.$cellContent.'</a>
+            </li>';
     }
 
     /**
@@ -146,9 +167,9 @@ class CalendarControl
 
         return
             '<div class="header">'.
-            '<a class="prev" href="'.'/calendar'.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Wstecz</a>'.
+            '<a class="prev" href="'.'/calendar'.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'&room='.$this->roomid.'">Wstecz</a>'.
             '<span class="title">'.$this->currentYear.' '.$this->monthLabels[$this->currentMonth - 1].'</span>'.
-                '<a class="next" href="'.'/calendar'.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Dalej</a>'.
+                '<a class="next" href="'.'/calendar'.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'&room='.$this->roomid.'">Dalej</a>'.
                 '</div>';
     }
 

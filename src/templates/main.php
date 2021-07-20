@@ -28,9 +28,6 @@
                     <a class="nav-link" href="/calendar">Kalendarz</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/rezerwacje">Rezerwacje</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="/rooms">Sale</a>
                 </li>
                 <li class="nav-item">

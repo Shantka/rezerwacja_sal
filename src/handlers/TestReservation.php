@@ -8,6 +8,9 @@ use Components\Auth;
 
 class TestReservation extends Handler
 {
+    private $date;
+    private $roomId;
+
     public function handle(): string
     {        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,7 +26,20 @@ class TestReservation extends Handler
         }
 
         return (new Template('testreservation'))->render([
-            'rooms' => Database::instance()->getRooms(),            
+            'rooms' => Database::instance()->getRooms(), 
+            'room' => Database::instance()->getRoomById($this->roomId),
+            'date' => $this->date,
+            'roomid' => $this->roomId,           
         ]);    
+    }
+
+    public function setDate(string $date)
+    {
+        $this->date = $date;
+    }
+
+    public function setRoomId(int $id) 
+    {
+        $this->roomId = $id;
     }
 }

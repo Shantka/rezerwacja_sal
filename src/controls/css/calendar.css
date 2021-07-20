@@ -123,3 +123,13 @@ div.clear{
 div#calendar ul.dates li.mask{
     background-color: #cdcdcd;
 }
+
+div#calendar ul.dates li.free{
+    background-color: #07ce61;
+    /* background-color: red; */
+}
+
+div#calendar ul.dates li.occupied{
+    /* background-color: #07ce61; */
+    background-color: red;
+}
