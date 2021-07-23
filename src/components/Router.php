@@ -15,6 +15,7 @@ use Handlers\Test;
 use Handlers\TestReservation;
 use Handlers\Reservation;
 use Handlers\AddRoom;
+use Handlers\NewMessage;
 
 class Router
 {
@@ -45,6 +46,9 @@ class Router
             }
             return $reservation;
         }
+        else if ($get_args === 'newmessage') {
+            return new NewMessage();
+        }
 
         switch ($_SERVER['REQUEST_URI'] ?? '/') {
             case '/rooms':
@@ -61,8 +65,6 @@ class Router
                 return new Login();
             case '/logout':                
                 return new Logout();
-            // case '/rooms':
-            //     return new Rooms();
             case '/adminpanel':
                 return new AdminPanel();
             case '/rezerwacje':

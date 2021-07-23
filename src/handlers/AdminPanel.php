@@ -3,6 +3,7 @@
 namespace Handlers;
 
 use Components\Auth;
+use Components\Database;
 use Components\Template;
 
 class AdminPanel extends Handler
@@ -13,6 +14,12 @@ class AdminPanel extends Handler
             return (new Login)->handle();
         }
 
-        return (new Template('adminpanel'))->render();
+        if (!Auth::getUser()->getIsAdmin()) {
+            return (new Profile)->handle();
+        }
+
+        return (new Template('adminpanel'))->render([
+            'reservations' => Database::instance()->getAllReservations(),
+        ]);
     }
 }

@@ -11,6 +11,7 @@ class Reservation
     private $end;
     private $topic;
     private $description;
+    private $note;
 
     public function __construct(array $input)
     {
@@ -20,7 +21,8 @@ class Reservation
         $this->start = (string)($input['start'] ?? '');
         $this->end = (string)($input['koniec'] ?? '');
         $this->topic = (string)($input['temat'] ?? '');     
-        $this->description = (string)($input['opis'] ?? '');   
+        $this->description = (string)($input['opis'] ?? '');
+        $this->note = (string)($input['notatka'] ?? '');
     }
 
     public function getId(): int
@@ -51,5 +53,10 @@ class Reservation
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function getNote(): string
+    {
+        return $this->note;
     }
 }

@@ -12,7 +12,7 @@ div#calendar div.box{
     left:0px;
     width:100%;
     height:60px;
-    background-color: #749bff;
+    background-color: #cdcdcd;
 }
 
 div#calendar div.header{
@@ -33,11 +33,11 @@ div#calendar div.header a.prev,div#calendar div.header a.next{
     display:block;
     cursor:pointer;
     text-decoration:none;
-    color:#FFF;
+    color:#000;
 }
 
 div#calendar div.header span.title{
-    color:#FFF;
+    color:#000;
     font-size:24px;
 }
 
@@ -125,11 +125,11 @@ div#calendar ul.dates li.mask{
 }
 
 div#calendar ul.dates li.free{
-    background-color: #07ce61;
+    background-color: #61e79d;
     /* background-color: red; */
 }
 
 div#calendar ul.dates li.occupied{
     /* background-color: #07ce61; */
-    background-color: red;
+    background-color: rgb(219, 96, 96);
 }

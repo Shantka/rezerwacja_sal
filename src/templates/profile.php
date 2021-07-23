@@ -97,8 +97,19 @@ $user = Auth::getUser();
                         <tr>
                         <th style="width: 100px;"><?= date_format(date_create($meeting->getStart()), "m-d-Y") ?></th>
                         <td><?= $meeting->getTopic() ?></td>
-                        <td><button type="button" class="btn btn-success" disabled>Potwierdź</button>
-                        <button type="button" class="btn btn-danger">Odrzuć</button></td>
+                        <td><button type="button" class="btn btn-success"
+                            onclick="onacceptinvitation(<?= $userid ?>, <?= $meeting->getId() ?>)"
+                            id="accept_<?= $meeting->getId() ?>"
+                            <?= $invitationstatuses[$meeting->getId()]->isAccepted() ? 'disabled' : '' ?>
+                            >Potwierdź</button>
+                        <button type="button" class="btn btn-danger"
+                            onclick="onrejectinvitation(<?= $userid ?>, <?= $meeting->getId() ?>)"
+                            id="reject_<?= $meeting->getId() ?>" 
+                            <?= $invitationstatuses[$meeting->getId()]->isRejected() ? 'disabled' : '' ?>                       
+                            >Odrzuć</button>
+                        <button type="button" class="btn btn-secondary" onclick="location.href='newmessage?reservationid=<?= $meeting->getId() ?>'">Wiadomość</button>
+                        <button type="button" class="btn btn-secondary" onclick="location.href='reservation?id=<?= $meeting->getId() ?>'">Szczegóły</button>
+                        </td>
                         </tr>
                         <?php } ?>
                     </tbody>
@@ -109,3 +120,22 @@ $user = Auth::getUser();
         </div>    
     </div>    
 </div>
+<script>
+    function onacceptinvitation(userid, reservationid) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "src/templates/acceptinvitation.php?user=" + userid + "&reservation=" + reservationid, true);
+        xmlhttp.send();
+        
+        document.getElementById("accept_" + reservationid).disabled = true;        
+        document.getElementById("reject_" + reservationid).disabled = false;
+    }
+
+    function onrejectinvitation(userid, reservationid) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "src/templates/rejectinvitation.php?user=" + userid + "&reservation=" + reservationid, true);
+        xmlhttp.send();
+
+        document.getElementById("accept_" + reservationid).disabled = false;        
+        document.getElementById("reject_" + reservationid).disabled = true;
+    }
+</script>

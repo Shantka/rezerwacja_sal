@@ -44,6 +44,30 @@
                     </span>  
                 </td>
             </tr>
+            <?php if ($isowner) { ?>
+            <tr>
+              <th>Notatki</th>
+              <td>
+                <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editNotesButton"
+                  >Edytuj</button>
+                <br>      
+                <span id="note">
+                      <?= $reservation->getNote() ?>
+                </span>          
+              </td>
+            </tr>
+            <tr>
+              <th>Wiadomości</th>
+              <td>
+                <?php if (count($messages) === 0) { ?>
+                  Nie posiadasz żadnych wiadomości
+                <?php } else { ?>
+                  <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#viewMessagesButton"
+                    >Zobacz</button>
+                <?php } ?>
+              </td>
+            </tr>
+            <?php } ?>
             <tr>
                 <th>Uczestnicy</th>
                 <td>
@@ -53,6 +77,8 @@
                     <?php foreach($invited as $user) { ?>
                         <tr>
                             <th><?= $user->getUsername() ?></th>
+                            <td><?= $reservationstatuses[$user->getId()]->isAccepted() ? 'Uczestnictwo potwierdzone' : '' ?>
+                            <?= $reservationstatuses[$user->getId()]->isRejected() ? 'Uczestnictwo odrzucone' : '' ?></td>
                             <?php if ($canedit) { ?>
                             <td><button type="button" class="btn btn-dark btn-sm" 
                             onclick="onremoveinvitation(<?= $user->getId() ?>, <?= $reservation->getId() ?>)">Usuń</button></td>
@@ -140,6 +166,54 @@ onclick="refreshavailableusers(<?= $reservation->getId() ?>)">
   </div>
 </div>
 
+<div class="modal fade" id="editNotesButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edytuj notatki</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="false">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editedtopic">
+            <textarea class="form-control" id="newnote"><?= $reservation->getNote() ?></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" 
+        onclick="oneditnote(newnote.value, <?= $reservation->getId() ?>)">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="viewMessagesButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Wiadomości</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="false">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?php foreach($messages as $message) { ?>
+          <div>
+            <h5><?= $message->getUserName() ?></h5>            
+            <?= $message->getMessage() ?>
+            <hr />
+            <br>
+          </div>
+        <?php } ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 function onedittopic(topic, reservationid) {    
     var xmlhttp = new XMLHttpRequest();
@@ -153,6 +227,13 @@ function oneditdescriptionc(description, reservationid) {
     xmlhttp.open("POST", "src/templates/editreservationdescription.php?description=" + description + "&reservation=" + reservationid, true);
     xmlhttp.send();
     document.getElementById("description").innerHTML = description;
+}
+
+function oneditnote(note, reservationid) {    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "src/templates/editreservationnote.php?note=" + note + "&reservation=" + reservationid, true);
+    xmlhttp.send();
+    document.getElementById("note").innerHTML = note;
 }
 
 function onremoveinvitation(userid, reservationid) {

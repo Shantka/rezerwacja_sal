@@ -9,16 +9,17 @@ VALUES
 INSERT INTO `uzytkownicy` (`login`, `imie`, `haslo`, `isAdmin`) 
 VALUES
     ('m_kowalski@email.com', 'Marian Kowalski', '207023ccb44feb4d7dadca005ce29a64', 1),
+    ('a_salata@email.com', 'Agnieszka Sałata', '207023ccb44feb4d7dadca005ce29a64', 1),
+    ('k_stok@email.com', 'Kamil Stok', '207023ccb44feb4d7dadca005ce29a64', 1),
+    ('p_tetnica@email.com', 'Piotr Tętnica', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('j_szybki@email.com', 'Jakub Szybki', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('m_pies@email.com', 'Maciej Pies', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('a_krolikowska@email.com', 'Antonina Królikowska', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('a_komar@email.com', 'Alicja Komar', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('s_bacik@email.com', 'Stefan Bacik', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('m_wisnia@email.com', 'Maria Wiśnia', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('a_dudek@email.com', 'Andrzej Dudek', '207023ccb44feb4d7dadca005ce29a64', 0),
+    ('z_pajak@email.com', 'Zenon Pająk', '207023ccb44feb4d7dadca005ce29a64', 1),
     ('j_wtorek@email.com', 'Jacek Wtorek', '207023ccb44feb4d7dadca005ce29a64', 0),
     ('a_sroda@email.com', 'Adam Środa', '207023ccb44feb4d7dadca005ce29a64', 0),
     ('k_czwartek@email.com', 'Kazimierz Czwartek', '207023ccb44feb4d7dadca005ce29a64', 0);
-
-INSERT INTO `wyposazenie` (`opis`, `liczba`) 
-VALUES 
-    ('Projektor', 15), 
-    ('Tablica', 5), 
-    ('Laptop', 10), 
-    ('Mikrofon', 100), 
-    ('Wskaźnik', 10), 
-    ('Myszka', 30), 
-    ('Flipchart', 10);

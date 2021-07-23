@@ -136,18 +136,25 @@ class CalendarControl
         if ($cellContent == null) {
             $class = 'mask';
         } else if (array_key_exists($this->currentDate, $this->occupiedDates)) {
-            // $class = 'occupied';
+            $class = 'occupied';
             $resid = $this->occupiedDates[$this->currentDate];
             $link = "reservation?id=$resid";
         } else {
             $class = 'free';
         }
         
-
-
-        return '<li id="li-'.$this->currentDate.'" class="'.($class).'">
+        $today = date('Y-m-d');
+        if ($this->currentDate !== null && $this->currentDate < $today) {
+            return '<li id="li-'.$this->currentDate.'" class="mask">
+            '.$cellContent.'
+            </li>';              
+        } else {
+            return '<li id="li-'.$this->currentDate.'" class="'.($class).'">
             <a href="'.$link.'">'.$cellContent.'</a>
-            </li>';
+            </li>';        
+        }
+
+
     }
 
     /**

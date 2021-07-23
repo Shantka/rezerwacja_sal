@@ -21,7 +21,8 @@ CREATE TABLE `rezerwacje` (
   `start` datetime,
   `koniec` datetime,
   `temat` varchar(255),
-  `opis` varchar(255)
+  `opis` varchar(4500),
+  `notatka` varchar(4500)
 );
 
 CREATE TABLE `uczestnicy` (
@@ -31,21 +32,11 @@ CREATE TABLE `uczestnicy` (
   `odrzucone` boolean
 );
 
-CREATE TABLE `wyposazenieRezerwacji` (
-  `wyposazenieId` int,
-  `rezerwacjaId` int
-);
-
-CREATE TABLE `wyposazenie` (
+CREATE TABLE `wiadomosci` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `opis` varchar(255),
-  `liczba` int
-);
-
-CREATE TABLE `notatki` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `notatka` varchar(4500),
-  `rezerwacjaId` int
+  `uzytkownikId` int,
+  `rezerwacjaId` int,
+  `wiadomosc` varchar(4500)
 );
 
 ALTER TABLE `rezerwacje` ADD FOREIGN KEY (`organizatorId`) REFERENCES `uzytkownicy` (`id`);
@@ -54,10 +45,8 @@ ALTER TABLE `rezerwacje` ADD FOREIGN KEY (`salaId`) REFERENCES `sale` (`id`);
 
 ALTER TABLE `uczestnicy` ADD FOREIGN KEY (`uzytkownikId`) REFERENCES `uzytkownicy` (`id`);
 
-ALTER TABLE `uczestnicy` ADD FOREIGN KEY (`rezerwacjaId`) REFERENCES `rezerwacje` (`id`);
+ALTER TABLE `uczestnicy` ADD FOREIGN KEY (`rezerwacjaId`) REFERENCES `rezerwacje` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `wyposazenieRezerwacji` ADD FOREIGN KEY (`rezerwacjaId`) REFERENCES `rezerwacje` (`id`);
+ALTER TABLE `wiadomosci` ADD FOREIGN KEY (`uzytkownikId`) REFERENCES `uzytkownicy` (`id`);
 
-ALTER TABLE `notatki` ADD FOREIGN KEY (`rezerwacjaId`) REFERENCES `rezerwacje` (`id`);
-
-ALTER TABLE `wyposazenieRezerwacji` ADD FOREIGN KEY (`wyposazenieId`) REFERENCES `wyposazenie` (`id`);
+ALTER TABLE `wiadomosci` ADD FOREIGN KEY (`rezerwacjaId`) REFERENCES `rezerwacje` (`id`) ON DELETE CASCADE;

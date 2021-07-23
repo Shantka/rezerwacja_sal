@@ -1,12 +1,11 @@
-<?php
-
-?>
 <style>
     <?php include 'src/controls/css/rooms.css'; ?>
 </style>
+<div class="d-flex justify-content-center">
 <section class="my-5">
     <h3>Sale</h3>
 </section>
+</div>
 <?php if ($isadmin) { ?>
     <button type="button" class="btn btn-secondary" onclick="location.href='room'">Dodaj salę</button>
     <br><br>   

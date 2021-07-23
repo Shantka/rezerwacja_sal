@@ -15,8 +15,10 @@ class Profile extends Handler
         }
 
         return (new Template('profile'))->render([
+            'userid' => Auth::getAuthenticatedUserId(),
             'organizedmeetings' => Database::instance()->getUserReservations(Auth::getAuthenticatedUserId()),
             'invitedmeetings' => Database::instance()->getInvitedUserReservations(Auth::getAuthenticatedUserId()),
+            'invitationstatuses' => Database::instance()->getUserInvivationStatuses(Auth::getAuthenticatedUserId())
         ]);
     }
 
