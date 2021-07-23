@@ -6,7 +6,7 @@ use Components\Template;
 use Components\Database;
 use Components\Auth;
 
-class TestReservation extends Handler
+class NewReservation extends Handler
 {
     private $date;
     private $roomId;
@@ -25,7 +25,7 @@ class TestReservation extends Handler
             $this->requestRedirect("/reservation?id=$new_reservation_id");
         }
 
-        return (new Template('testreservation'))->render([
+        return (new Template('newreservation'))->render([
             'rooms' => Database::instance()->getRooms(), 
             'room' => Database::instance()->getRoomById($this->roomId),
             'date' => $this->date,

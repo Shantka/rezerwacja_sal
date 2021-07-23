@@ -2,7 +2,6 @@
 
 namespace Components;
 
-use Handlers\Contacts;
 use Handlers\Handler;
 use Handlers\Login;
 use Handlers\Logout;
@@ -11,8 +10,7 @@ use Handlers\Calendar;
 use Handlers\Rooms;
 use Handlers\AdminPanel;
 use Handlers\Reservations;
-use Handlers\Test;
-use Handlers\TestReservation;
+use Handlers\NewReservation;
 use Handlers\Reservation;
 use Handlers\AddRoom;
 use Handlers\NewMessage;
@@ -36,8 +34,8 @@ class Router
             }
             return $addRoom;
         }
-        else if ($get_args === 'testreservation') {
-            $reservation = new TestReservation();
+        else if ($get_args === 'newreservation') {
+            $reservation = new NewReservation();
             if (isset($_GET['date'])) {
                 $reservation->setDate($_GET['date']);
             }
@@ -52,9 +50,7 @@ class Router
 
         switch ($_SERVER['REQUEST_URI'] ?? '/') {
             case '/rooms':
-                return new Test();
-            case '/testreservation':
-                return new TestReservation();   
+                return new Rooms();
             case '/room':
                 return new AddRoom();                       
             case '/calendar':

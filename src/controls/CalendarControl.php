@@ -132,7 +132,7 @@ class CalendarControl
         }
 
         $class = '';
-        $link = "testreservation?date=$this->currentDate&roomid=$this->roomid";
+        $link = "newreservation?date=$this->currentDate&roomid=$this->roomid";
         if ($cellContent == null) {
             $class = 'mask';
         } else if (array_key_exists($this->currentDate, $this->occupiedDates)) {

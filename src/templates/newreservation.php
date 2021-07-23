@@ -4,7 +4,7 @@
 </section>
 </div>
 <div class="d-flex justify-content-center">
-    <form action="/testreservation" method="POST">
+    <form action="/newreservation" method="POST">
     <div>
         Sala: <?= $room->getName() ?>
         <input type="hidden" id="room" name="room" value="<?= $room->getId() ?>">
